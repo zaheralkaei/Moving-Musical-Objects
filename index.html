@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moving Musical Objects by Zaher Alkaei</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #ff4081; 
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center; 
+      padding: 10px; 
+    }
+
+    canvas {
+      border: 5px solid #ff4081;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkboxes {
+      display: flex;
+      gap: 10px;
+    }
+
+    .checkboxes label {
+      color: #fff;
+    }
+
+    .controls label {
+      color: #fff;
+      display: block;
+    }
+
+    #startButton, .effectButton, #aboutButton {
+      background-color: #e0e0e0;
+      color: #1e1e1e;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #startButton:hover, .effectButton:hover, #aboutButton:hover {
+      background-color: #ff4081;
+      color: #fff;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+
+    
+    .popup button {
+      margin-top: 20px;
+      background-color: #ff4081;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .popup button:hover {
+      background-color: #ff0051;
+    }
+
+    #aboutButton {
+      position: absolute;
+      left: 20px;  /* Move it to the left */
+      top: 20px;   /* Adjust the vertical position */
+      background-color: #e0e0e0;
+      color: #1e1e1e;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #aboutButton:hover {
+      background-color: #ff4081;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <p><h1>Moving Musical Objects by Zaher Alkaei</h1></p>
+  
+  <button id="aboutButton">About</button>
+  <div class="popup" id="aboutPopup">
+    <h2>About this app</h2>
+    <p>This app was designed by Zaher Alkaei to explore generative music using moving visual objects. Select objects, apply effects, and enjoy the soundscapes!</p>
+    <button id="closePopup">Close</button>
+  </div>
+  
+  
+  <canvas id="musicCanvas" width="800" height="600"></canvas>
+  <p>Choose which musical objects will be displayed:</p>
+  <div class="controls">
+    <div class="checkboxes">
+      <label><input type="checkbox" id="object1"> 1</label>
+      <label><input type="checkbox" id="object2"> 2</label>
+      <label><input type="checkbox" id="object3"> 3</label>
+      <label><input type="checkbox" id="object4"> 4</label>
+      <label><input type="checkbox" id="object5"> 5</label>
+    </div>
+
+    <label>Speed: 
+      <input type="range" id="objectSpeed" min="1" max="10" value="5">
+      <span id="speedDisplay">5</span>
+    </label>
+
+    <label>Scale Type: 
+      <select id="scaleType">
+        <option value="tonal">Tonal (Major) Scale</option>
+        <option value="chromatic">Chromatic Scale</option>
+        <option value="minor">Natural Minor Scale</option>
+        <option value="pentatonic">Pentatonic Scale</option>
+        <option value="dorian">Dorian Mode</option>
+        <option value="phrygian">Phrygian Mode</option>
+        <option value="lydian">Lydian Mode</option>
+        <option value="mixolydian">Mixolydian Mode</option>
+        <option value="locrian">Locrian Mode</option>
+        <option value="blues">Blues Scale</option>
+        <option value="harmonicMinor">Harmonic Minor Scale</option>
+        <option value="melodicMinor">Melodic Minor Scale</option>
+        <option value="arabic">Arabic Scale</option>
+        <option value="hungarianMinor">Hungarian Minor Scale</option>
+        <option value="japanese">Japanese Scale (Yo)</option>
+        <option value="hirajoshi">Hirajoshi Scale</option>
+      </select>
+    </label>
+
+    <label>Synth Type:
+      <select id="synthType">
+        <option value="synth">Synth</option>
+        <option value="amsynth">AMSynth</option>
+        <option value="fmsynth">FMSynth</option>
+        <option value="duosynth">DuoSynth</option>
+        <option value="polysynth">PolySynth</option>
+      </select>
+    </label>
+
+    <button id="startButton">Start</button>
+    <button class="effectButton" id="reverbButton">Enable Reverb</button>
+    
+
+    
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.39/Tone.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
